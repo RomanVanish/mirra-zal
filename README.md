@@ -101,8 +101,11 @@ python -m http.server 8000
 
 ## Публикация (GitHub Pages)
 
-1. Репозиторий у `romanvanish` (имя — без слова «arenda», например `mirra-zal`).
-2. Загрузить содержимое этой папки в ветку `main` (`git push`). Папка `doc/` и исходники фото в репозиторий не попадут.
-3. Settings → Pages → Deploy from branch → `main`, `/ (root)`. Custom domain — `zal.mirra-spb.ru` (файл `CNAME` уже есть — не удалять), включить «Enforce HTTPS».
-4. У регистратора домена `mirra-spb.ru`: DNS-запись `CNAME`, имя `zal`, значение `romanvanish.github.io`.
-5. Проверить превью ссылки в Telegram (картинка `assets/og.jpg`).
+Сайт опубликован: https://zal.mirra-spb.ru — репозиторий https://github.com/RomanVanish/mirra-zal (ветка `main`, корень).
+
+**Как обновить сайт:** изменить файлы → `git add -A` → `git commit -m "что поменяли"` → `git push`. Через 1–2 минуты изменения на сайте. Если поменяли `style.css` или `main.js` — увеличить номер `?v=` в их подключении в `index.html`, иначе у посетителей может остаться старая версия из кэша.
+
+- DNS (Beget): `zal` → CNAME `romanvanish.github.io` — уже настроено.
+- HTTPS: сертификат Let's Encrypt выпускает и продлевает GitHub сам, «Enforce HTTPS» включён.
+- Файл `.nojekyll` не удалять: без него GitHub не отдаёт файлы, имена которых начинаются с «_».
+- Файл `CNAME` не удалять.
