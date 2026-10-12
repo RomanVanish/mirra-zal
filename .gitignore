@@ -1,0 +1,12 @@
+# исходники фото — на сайт идут только WebP
+assets/img/**/*.jpg
+assets/img/**/*.jpeg
+assets/img/**/*.png
+assets/logo.png
+assets/video/*.MOV
+assets/video/*.mov
+# служебное
+doc/
+.claude/
+Thumbs.db
+desktop.ini
