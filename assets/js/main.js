@@ -51,7 +51,8 @@
   var sheetReturn = null;
   var openSheet = function (room, from) {
     sheetReturn = from || null;
-    sheetRoom.textContent = room ? 'Забронировать · ' + room : 'Забронировать дату';
+    var title = from && from.getAttribute('data-sheet-title');
+    sheetRoom.textContent = title || (room ? 'Забронировать · ' + room : 'Забронировать дату');
     sheet.showModal();
     $('.sheet__panel', sheet).focus({ preventScroll: true });
     document.body.classList.add('sheet-open');
@@ -156,6 +157,14 @@
     }, { passive: true });
     findSection();
   }
+
+  /* ---------- пока страницу листают — класс is-scrolling (дверь в «Условиях» прикрывается) ---------- */
+  var scrollIdle = 0;
+  window.addEventListener('scroll', function () {
+    document.documentElement.classList.add('is-scrolling');
+    clearTimeout(scrollIdle);
+    scrollIdle = setTimeout(function () { document.documentElement.classList.remove('is-scrolling'); }, 220);
+  }, { passive: true });
 
   /* ---------- кнопка «Наверх»: появляется после полутора экранов прокрутки.
      После перехода по ссылке из текста (не из меню) временно становится «Вернуться» — стрелка влево,
