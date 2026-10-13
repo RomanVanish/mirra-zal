@@ -23,11 +23,13 @@
 <link rel="preload" href="assets/fonts/cormorant-garamond-cyrillic-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/manrope-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/img/lotos-35/lotos-02-800.webp" imagesrcset="assets/img/lotos-35/lotos-02-800.webp 800w, assets/img/lotos-35/lotos-02-1600.webp 1600w" imagesizes="(min-width: 1024px) 55vw, 100vw" fetchpriority="high">
-<link rel="stylesheet" href="assets/css/style.css?v=30">
+<link rel="stylesheet" href="assets/css/style.css?v=50">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <!-- class="show-placeholders": показывать места под ещё не снятые видео. Убрать класс перед отправкой ссылки, если заглушки не нужны. -->
 <body class="show-placeholders">
+<svg class="fx-defs" width="0" height="0" aria-hidden="true" focusable="false"><filter id="fx-paint" x="-5%" y="-20%" width="110%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.22 0.3" numOctaves="1" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="0.8" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+
 
 <svg class="sprite" aria-hidden="true" focusable="false">
   <symbol id="i-tg" viewBox="0 0 24 24"><path d="M21.5 3.6 2.9 10.8c-.9.4-.9 1.5 0 1.8l4.6 1.5 1.8 5.6c.2.8 1.2 1 1.8.4l2.6-2.4 4.8 3.5c.7.5 1.6.1 1.8-.7l3.1-15.6c.2-1-.8-1.7-1.7-1.3Z"/><path d="m7.5 14.1 10.6-7.3-7.9 8.6"/></symbol>
@@ -50,6 +52,12 @@
   <symbol id="f-chairs" viewBox="5 5 38 38"><path d="M6 33V21a3.5 3.5 0 0 1 7 0v6h5.5v6Z"/><path d="M8 33v4M17 33v4"/><path d="M42 33V21a3.5 3.5 0 0 0-7 0v6h-5.5v6Z"/><path d="M40 33v4M31 33v4"/><path class="acc-line" d="M21.5 28h5M24 28v9"/></symbol>
   <symbol id="f-table" viewBox="5 5 38 38"><path d="M5 28h38"/><path d="M9 28v12M39 28v12"/><path d="M14 28l2-9.5h13l2 9.5"/><path class="acc-fill" d="M17.3 20h10.4l1.4 6.5H15.9Z"/><path class="acc-line" d="M34 22.5h4.5v3a2.2 2.2 0 0 1-2.2 2.5h-.1a2.2 2.2 0 0 1-2.2-2.5Z"/></symbol>
 
+  <symbol id="f-game" viewBox="5 5 38 38"><path d="M11 24A13 13 0 0 1 37 24A12 12 0 0 1 13 24A10 10 0 0 1 33 24A9 9 0 0 1 15 24A7 7 0 0 1 29 24A6 6 0 0 1 17 24"/><circle class="acc" cx="23" cy="24" r="2.6"/><circle class="acc" cx="37" cy="24" r="1.6"/></symbol>
+  <symbol id="f-dice" viewBox="5 5 38 38"><rect x="6" y="19" width="17" height="17" rx="3.5" transform="rotate(-8 14.5 27.5)"/><circle class="acc" cx="10.6" cy="23.9" r="1.5"/><circle class="acc" cx="14.5" cy="27.5" r="1.5"/><circle class="acc" cx="18.4" cy="31.1" r="1.5"/><circle cx="33" cy="13.5" r="4"/><path d="M29.5 19.5h7"/><path d="M31.2 19.5c0 5-1.4 9.5-3.9 13h11.4c-2.5-3.5-3.9-8-3.9-13"/><path d="M26.5 33h13a1.5 1.5 0 0 1 1.5 1.5V38H25v-3.5a1.5 1.5 0 0 1 1.5-1.5Z"/></symbol>
+  <symbol id="f-masks" viewBox="5 5 38 38"><path class="acc-fill" d="M24 19.5c5.5 2 11.5 2 17 0V29c0 6.5-3.8 10.5-8.5 10.5S24 35.5 24 29Z"/><path d="M24 19.5c5.5 2 11.5 2 17 0V29c0 6.5-3.8 10.5-8.5 10.5S24 35.5 24 29"/><path d="M7 11.5c5.5 2 11.5 2 17 0V21c0 6.5-3.8 10.5-8.5 10.5S7 27.5 7 21Z"/><path d="M10.8 18.2q1.6-1.6 3.2 0M17 18.2q1.6-1.6 3.2 0"/><path class="acc-line" d="M11.8 23.6q3.7 3.4 7.4 0"/><path d="M27.8 26.6q1.6 1.4 3.2 0M34 26.6q1.6 1.4 3.2 0"/><path class="acc-line" d="M28.8 34.4q3.7-3 7.4 0"/></symbol>
+  <symbol id="f-pot" viewBox="5 5 38 38"><path d="M11 24h26v8.5a6 6 0 0 1-6 6H17a6 6 0 0 1-6-6Z"/><path d="M8 24h32M11 27.5H7M37 27.5h4"/><path d="M21 24v-1.5a3 3 0 0 1 6 0V24"/><path class="acc-line" d="M17 18.5c-1.6-2 1.6-3.2 0-5.5M24 16.5c-1.6-2 1.6-3.2 0-5.5M31 18.5c-1.6-2 1.6-3.2 0-5.5"/><path class="acc-fill" d="M20 34.5c0-3.6 3.2-5.6 7.5-5.6 0 3.6-3.2 5.6-7.5 5.6Z"/><path d="M20 34.5c1.8-2.2 3.8-3.6 6-4.4"/></symbol>
+  <symbol id="a-mega" viewBox="0 0 48 48"><path d="M9 20.5v7h5.5L30 35V13l-15.5 7.5Z"/><path class="acc-fill" d="M9 20.5v7h5.5v-7Z"/><path d="M14.5 27.5l2.2 8.5h4.3l-1.8-7"/><path class="acc-line" d="M34.5 19.5c1.8 1.6 1.8 7.4 0 9M38.5 16c3.4 3.6 3.4 12.4 0 16"/></symbol>
+  <symbol id="a-invoice" viewBox="0 0 48 48"><path d="M13 7h15.5L36 14.5V41H13Z"/><path d="M28.5 7v7.5H36"/><path d="M18 19h8M18 24h13"/><path class="acc-line" d="M22 38V29.5h3.6a2.4 2.4 0 0 1 0 4.8H20.3M20.3 36.2h5.2"/></symbol>
   <symbol id="a-wifi" viewBox="0 0 48 48"><path d="M9 21.5a21 21 0 0 1 30 0"/><path d="M14 26.5a14 14 0 0 1 20 0"/><path d="M19 31.5a7 7 0 0 1 10 0"/><circle class="acc" cx="24" cy="36.5" r="2.2"/></symbol>
   <symbol id="a-air" viewBox="0 0 48 48"><path d="M7 18h21a5 5 0 1 0-5-5"/><path d="M7 25h28a5 5 0 1 1-5 5"/><path d="M7 32h12a4 4 0 1 1-4 4"/><path class="acc" d="M36 11c3 0 5 2 5 5-3 0-5-2-5-5Z"/></symbol>
   <symbol id="a-light" viewBox="0 0 48 48"><path d="M24 5v8"/><path class="acc-fill" d="M13 25a11 11 0 0 1 22 0Z"/><path d="M13 25a11 11 0 0 1 22 0Z"/><path d="M21.5 25a2.5 2.5 0 0 0 5 0"/><path d="M16 31l-2.5 5M24 32v6M32 31l2.5 5"/></symbol>
@@ -75,6 +83,7 @@
       <a href="#formats">Форматы</a>
       <a href="#rooms">Помещения</a>
       <a href="#terms">Условия</a>
+      <a href="#gallery">Галерея</a>
       <a href="#faq">Вопросы</a>
       <a href="#contacts">Контакты</a>
     </nav>
@@ -119,13 +128,13 @@
     </figure>
   </div>
   <div class="hero__body">
-    <p class="plaque">Пространство для групп и событий</p>
+    <p class="plaque"><span class="plaque__t">Пространство для групп и событий</span></p>
     <h1 class="hero__title">Проведите <span class="nowrap">своё мероприятие</span> <em>в&nbsp;«МирРа»</em></h1>
     <p class="hero__lead">Залы и кабинеты для групп, семинаров, лекций и практик в центре Петербурга.</p>
     <ul class="hero__perks" aria-label="Преимущества">
       <li>свежий ремонт</li><li>тишина</li><li>быстрый Wi-Fi</li>
     </ul>
-    <a class="hero__addr" href="https://yandex.ru/maps/org/mirra/231684365859/?ll=30.360395%2C59.928604&amp;z=16.24" target="_blank" rel="noopener" aria-label="Лиговский проспект, 44В — открыть в Яндекс.Картах"><span class="hero__pin"><svg class="ic"><use href="#i-map"/></svg></span><span class="hero__addr-txt"><b>Лиговский проспект, 44В</b><span>7 минут пешком от м.&nbsp;Пл.&nbsp;Восстания</span></span><svg class="ic hero__addr-go" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <a class="hero__addr" href="https://yandex.ru/maps/org/mirra/231684365859/?ll=30.360395%2C59.928604&amp;z=16.24" target="_blank" rel="noopener" aria-label="Лиговский проспект, 44В — открыть в Яндекс.Картах"><span class="hero__pin"><svg class="ic"><use href="#i-map"/></svg></span><span class="hero__addr-txt"><b>Лиговский проспект, 44В</b><span>7 минут пешком от М.&nbsp;Пл.&nbsp;Восстания <span class="hero__addr-exit">(выход на&nbsp;«Московский вокзал»)</span></span></span><svg class="ic hero__addr-go" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     <div class="hero__actions">
       <a class="btn btn--primary" href="#contacts" data-contact>Забронировать дату<svg class="ic"><use href="#i-arrow"/></svg></a>
       <a class="btn btn--ghost" href="tel:+79219675459"><svg class="ic"><use href="#i-phone"/></svg>Позвонить <span class="btn__num">+7 921 967-54-59</span></a>
@@ -147,7 +156,7 @@
 <!-- ============ Место ============ -->
 <section class="place" id="place" aria-labelledby="place-title" data-section-name="Место">
   <div class="wrap place__head reveal">
-    <p class="plaque">Место</p>
+    <p class="plaque"><span class="plaque__t">Место</span></p>
     <h2 class="place__title" id="place-title">Исторический центр Петербурга — <em>и тишина петербургского двора</em></h2>
   </div>
   <figure class="place__photo reveal">
@@ -162,7 +171,7 @@
       <img src="assets/img/city/city-01-800.webp" width="800" height="634" loading="lazy" alt="Улица с историческими домами и воротами во двор">
     </figure>
     <div class="place__text">
-      <p>Рядом с м.&nbsp;Пл.&nbsp;Восстания: по Лиговскому проспекту мимо ТЦ «Галерея» и во двор — подальше от шума проспекта. Удобно добираться участникам из любой части города.</p>
+      <p>Рядом с Московским вокзалом: по Лиговскому проспекту мимо ТЦ «Галерея» и во двор — подальше от шума проспекта. Удобно добираться участникам из любой части города.</p>
       <p class="place__bridge">Внутри — свежий ремонт, тишина и продуманные детали</p>
     </div>
   </div>
@@ -172,11 +181,11 @@
 <section class="section section--tight formats" id="formats" aria-labelledby="formats-title" data-section-name="Форматы">
   <div class="wrap">
     <header class="section__head reveal">
-      <p class="plaque">Форматы</p>
+      <p class="plaque"><span class="plaque__t">Форматы</span></p>
       <h2 class="section__title" id="formats-title">Для каких встреч</h2>
     </header>
     <ul class="formats__grid reveal">
-      <li><span class="medal medal--sm" aria-hidden="true"><svg class="ai"><use href="#f-circle"/></svg></span>Психологические группы и круги</li>
+      <li><span class="medal medal--sm" aria-hidden="true"><svg class="ai"><use href="#f-circle"/></svg></span>Психологические группы и кружки</li>
       <li><span class="medal medal--sm" aria-hidden="true"><svg class="ai"><use href="#f-board"/></svg></span>Тренинги и семинары</li>
       <li><span class="medal medal--sm" aria-hidden="true"><svg class="ai"><use href="#f-screen"/></svg></span>Лекции, показы и презентации</li>
       <li><span class="medal medal--sm" aria-hidden="true"><svg class="ai"><use href="#f-yoga"/></svg></span>Йога и телесные практики</li>
@@ -184,6 +193,10 @@
       <li><span class="medal medal--sm" aria-hidden="true"><svg class="ai"><use href="#f-book"/></svg></span>Книжные и разговорные клубы</li>
       <li><span class="medal medal--sm" aria-hidden="true"><svg class="ai"><use href="#f-chairs"/></svg></span>Консультации и супервизии</li>
       <li><span class="medal medal--sm" aria-hidden="true"><svg class="ai"><use href="#f-table"/></svg></span>Рабочие встречи и переговоры</li>
+      <li><span class="medal medal--sm" aria-hidden="true"><svg class="ai"><use href="#f-game"/></svg></span>Трансформа&shy;ционные игры</li>
+      <li><span class="medal medal--sm" aria-hidden="true"><svg class="ai"><use href="#f-dice"/></svg></span>Настолки</li>
+      <li><span class="medal medal--sm" aria-hidden="true"><svg class="ai"><use href="#f-masks"/></svg></span>Театральные постановки</li>
+      <li><span class="medal medal--sm" aria-hidden="true"><svg class="ai"><use href="#f-pot"/></svg></span>Кулинарные встречи и ЗОЖ</li>
     </ul>
   </div>
 </section>
@@ -192,7 +205,7 @@
 <section class="section rooms" id="rooms" aria-labelledby="rooms-title" data-section-name="Помещения">
   <div class="wrap">
     <header class="section__head reveal">
-      <p class="plaque">Помещения</p>
+      <p class="plaque"><span class="plaque__t">Помещения</span></p>
       <h2 class="section__title" id="rooms-title">Четыре пространства под ваш формат</h2>
     </header>
 
@@ -230,7 +243,7 @@
           <div><dt>Вместимость</dt><dd>до 25 человек, максимум 30</dd></div>
           <div><dt>Йога и практики</dt><dd>до 10 человек на ковриках</dd></div>
           <div><dt>Оснащение</dt><dd>большой телевизор, маркерная доска, стулья, складные столики</dd></div>
-          <div><dt>Пол</dt><dd>тёплый, коврики можно взять на месте</dd></div>
+          <div><dt>Пол</dt><dd>тёплый (есть спортивные коврики и спец. оборудование для йоги)</dd></div>
         </dl>
         <ul class="tags"><li>лекции</li><li>семинары</li><li>группы</li><li>йога и практики</li><li>показы и презентации</li></ul>
         <a class="link-cta" href="#contacts" data-contact data-room="Зал «Лотос», 35 м²">Забронировать дату<svg class="ic"><use href="#i-arrow"/></svg></a>
@@ -261,11 +274,12 @@
         <p class="room__desc">Просторный зал с большими столами и кухней — для мастер-классов, арт-терапии, рисования и рабочих встреч. Столы можно убрать из центра — тогда почти вся площадь свободна.</p>
         <dl class="specs">
           <div><dt>За столами</dt><dd>10–12 человек свободно</dd></div>
-          <div><dt>Кухня</dt><dd>чайник, микроволновка, холодильник</dd></div>
+          <div><dt>Кухня</dt><dd>чайник, микроволновка, индукционная плитка, холодильник, раковина</dd></div>
           <div><dt>Окна</dt><dd>120 см</dd></div>
           <div><dt>Обратите внимание</dt><dd>отделяется шторами, без звукоизоляции — для спокойных форматов</dd></div>
         </dl>
-        <ul class="tags"><li>мастер-классы</li><li>арт-терапия и рисование</li><li>совещания и переговоры</li></ul>
+        <p class="room__note">Для ведущих и посетителей «Мастер-зал» может быть предоставлен дополнительно как зона отдыха «на особых условиях».</p>
+        <ul class="tags"><li>мастер-классы</li><li>арт-терапия и рисование</li><li>совещания и переговоры</li><li>кулинарные встречи</li><li>ЗОЖ</li></ul>
         <a class="link-cta" href="#contacts" data-contact data-room="«Мастер-зал», 50 м²">Забронировать дату<svg class="ic"><use href="#i-arrow"/></svg></a>
       </div>
     </article>
@@ -301,9 +315,9 @@
         <div class="room__body">
           <p class="room__desc">Тёплый кабинет с кожаным диваном и креслами — для индивидуальных и парных консультаций. Свет настраивается: мягкий для психотерапии, яркий для деловых встреч.</p>
           <dl class="specs">
-            <div><dt>Вместимость</dt><dd>2–3 человека</dd></div>
+            <div><dt>Вместимость</dt><dd>2–5 человек</dd></div>
           </dl>
-          <ul class="tags"><li>индивидуальные консультации</li><li>парные консультации</li><li>супервизии</li></ul>
+          <ul class="tags"><li>индивидуальные консультации</li><li>парные консультации</li><li>семейная терапия</li><li>детская психотерапия</li><li>супервизии</li></ul>
           <a class="link-cta" href="#contacts" data-contact data-room="Кабинет «Золотой», 10 м²">Забронировать дату<svg class="ic"><use href="#i-arrow"/></svg></a>
         </div>
       </article>
@@ -338,9 +352,9 @@
         <div class="room__body">
           <p class="room__desc">Камерный кабинет с живописью и мягкими креслами — для индивидуальных и парных консультаций и супервизий. Свет — от приглушённого до яркого делового.</p>
           <dl class="specs">
-            <div><dt>Вместимость</dt><dd>2–3 человека</dd></div>
+            <div><dt>Вместимость</dt><dd>2–5 человек</dd></div>
           </dl>
-          <ul class="tags"><li>индивидуальные консультации</li><li>парные консультации</li><li>супервизии</li></ul>
+          <ul class="tags"><li>индивидуальные консультации</li><li>парные консультации</li><li>семейная терапия</li><li>детская психотерапия</li><li>супервизии</li><li>миофасциальная миорелаксация</li></ul>
           <a class="link-cta" href="#contacts" data-contact data-room="Кабинет «Цапля», 12 м²">Забронировать дату<svg class="ic"><use href="#i-arrow"/></svg></a>
         </div>
       </article>
@@ -361,7 +375,7 @@
 <section class="section light" id="light" aria-labelledby="light-title" hidden data-section-name="Свет под формат">
   <div class="wrap">
     <header class="section__head">
-      <p class="plaque">Свет под формат</p>
+      <p class="plaque"><span class="plaque__t">Свет под формат</span></p>
       <h2 class="section__title" id="light-title">Один кабинет — разное настроение</h2>
     </header>
     <!-- Пример пары (скопировать над light__rooms и вписать свои файлы):
@@ -380,16 +394,16 @@
 <section class="section details" id="details" aria-labelledby="details-title" data-section-name="Детали">
   <div class="wrap">
     <header class="section__head reveal">
-      <p class="plaque">Детали</p>
+      <p class="plaque"><span class="plaque__t">Детали</span></p>
       <h2 class="section__title" id="details-title">Детали, о которых не нужно думать</h2>
     </header>
     <ul class="details__list reveal">
-      <li><span class="medal" aria-hidden="true"><svg class="ai"><use href="#a-wifi"/></svg></span><div><h3>Wi-Fi во всех помещениях</h3><p>Быстрый и стабильный — хватит для трансляций и презентаций</p></div></li>
+      <li><span class="medal" aria-hidden="true"><svg class="ai"><use href="#a-wifi"/></svg></span><div><h3>Wi-Fi во всех помещениях</h3><p>Быстрый и стабильный — хватит для онлайн-трансляций, видеоконференций и презентаций</p></div></li>
       <li><span class="medal" aria-hidden="true"><svg class="ai"><use href="#a-air"/></svg></span><div><h3>Свежий воздух</h3><p>Приточно-вытяжная вентиляция и озонирование</p></div></li>
       <li class="is-link"><span class="medal" aria-hidden="true"><svg class="ai"><use href="#a-light"/></svg></span><div><h3><a class="details__link" href="#room-zolotoy" aria-label="Свет под формат: Смотреть кабинет «Золотой» с переключением света">Свет под формат<svg class="ic details__go" aria-hidden="true"><use href="#i-arrow"/></svg></a></h3><p>Мягкий — для терапии, яркий — для работы и лекций</p></div></li>
       <li class="is-link"><span class="medal" aria-hidden="true"><svg class="ai"><use href="#a-floor"/></svg></span><div><h3><a class="details__link" href="#room-lotos" aria-label="Тёплый пол: Смотреть зал «Лотос»">Тёплый пол<svg class="ic details__go" aria-hidden="true"><use href="#i-arrow"/></svg></a></h3><p>В зале «Лотос» — удобно для йоги и практик на полу</p></div></li>
       <li><span class="medal" aria-hidden="true"><svg class="ai"><use href="#a-hanger"/></svg></span><div><h3>Гардероб</h3><p>Больше 50 мест; бахилы или чистые тапочки при необходимости</p></div></li>
-      <li class="is-link"><span class="medal" aria-hidden="true"><svg class="ai"><use href="#a-cup"/></svg></span><div><h3><a class="details__link" href="#room-master" aria-label="Кухня: Смотреть «Мастер-зал»">Кухня<svg class="ic details__go" aria-hidden="true"><use href="#i-arrow"/></svg></a></h3><p>Чайник, микроволновка, холодильник</p></div></li>
+      <li class="is-link"><span class="medal" aria-hidden="true"><svg class="ai"><use href="#a-cup"/></svg></span><div><h3><a class="details__link" href="#room-master" aria-label="Кухня: Смотреть «Мастер-зал»">Кухня<svg class="ic details__go" aria-hidden="true"><use href="#i-arrow"/></svg></a></h3><p>Чайник, микроволновка, индукционная плитка, холодильник, раковина</p></div></li>
       <li><span class="medal" aria-hidden="true"><svg class="ai"><use href="#a-drop"/></svg></span><div><h3>Два санузла</h3><p>Хороший ремонт и сантехника, чисто и комфортно</p></div></li>
       <li class="is-link"><span class="medal" aria-hidden="true"><svg class="ai"><use href="#a-pin"/></svg></span><div><h3><a class="details__link" href="#place" aria-label="Центр города: Смотреть, где мы находимся">Центр города<svg class="ic details__go" aria-hidden="true"><use href="#i-arrow"/></svg></a></h3><p>Рядом с м.&nbsp;Пл.&nbsp;Восстания, тихий двор за ТЦ «Галерея»</p></div></li>
     </ul>
@@ -401,7 +415,7 @@
 <section class="section terms" id="terms" aria-labelledby="terms-title" data-section-name="Условия">
   <div class="wrap">
     <header class="section__head reveal">
-      <p class="plaque">Условия</p>
+      <p class="plaque"><span class="plaque__t">Условия</span></p>
       <h2 class="section__title" id="terms-title">Условия сотрудничества</h2>
     </header>
     <ol class="terms__list reveal">
@@ -409,19 +423,22 @@
         <span class="terms__n">I</span>
         <h3>Разовое мероприятие</h3>
         <p>Фиксированная стоимость за вечер или блок часов.</p>
-        <p class="terms__price"><mark class="todo">ЗАПОЛНИТЬ: от … ₽</mark></p>
+        <div class="terms__rates" role="table" aria-label="Стоимость: кабинет и зал">
+          <div role="row"><span role="rowheader">час</span><b role="cell">от 400&nbsp;<i class="rub">₽</i></b><b role="cell">от 800&nbsp;<i class="rub">₽</i></b></div>
+          <div role="row"><span role="rowheader">вечер</span><b role="cell">1000&nbsp;<i class="rub">₽</i></b><b role="cell">1500&nbsp;<i class="rub">₽</i></b></div>
+          <div role="row" class="terms__rates-cols"><span></span><small role="columnheader">кабинет</small><small role="columnheader">зал</small></div>
+        </div>
       </li>
       <li>
         <span class="terms__n">II</span>
         <h3>Процент с участников</h3>
         <p>Для новых форматов: вы не рискуете, если группа только собирается.</p>
-        <p class="terms__price"><mark class="todo">ЗАПОЛНИТЬ: … %</mark></p>
+        <p class="terms__price">от 20%</p>
       </li>
       <li>
         <span class="terms__n">III</span>
         <h3>Регулярная группа</h3>
-        <p>Постоянный слот в неделю на особых условиях.</p>
-        <p class="terms__price"><mark class="todo">ЗАПОЛНИТЬ</mark></p>
+        <p>Особые условия для постоянных клиентов</p>
       </li>
     </ol>
     <div class="terms__accent reveal">
@@ -429,8 +446,8 @@
       <p>Приходите посмотреть пространство заранее.</p>
     </div>
     <ul class="terms__extra reveal">
-      <li><span>Можем анонсировать ваше мероприятие в каналах «МирРа» <mark class="todo">ПРОВЕРИТЬ</mark></span></li>
-      <li><span>Работаем с ИП и ООО — оплата по счёту</span></li>
+      <li><span class="medal medal--sm" aria-hidden="true"><svg class="ai"><use href="#a-invoice"/></svg></span><div><b>Работаем с ИП и ООО</b><span>Оплата по счёту</span></div></li>
+      <li><span class="medal medal--sm" aria-hidden="true"><svg class="ai"><use href="#a-mega"/></svg></span><div><b>Анонс в каналах «МирРа»</b><span>Можем анонсировать ваше мероприятие</span></div></li>
     </ul>
   </div>
 </section>
@@ -439,7 +456,7 @@
 <section class="section steps" id="steps" aria-labelledby="steps-title" data-section-name="Как это работает">
   <div class="wrap">
     <header class="section__head reveal">
-      <p class="plaque">Как это работает</p>
+      <p class="plaque"><span class="plaque__t">Как это работает</span></p>
       <h2 class="section__title" id="steps-title">Четыре шага до встречи</h2>
     </header>
     <ol class="steps__list reveal">
@@ -455,8 +472,8 @@
 <section class="section gallery-all" id="gallery" aria-labelledby="gallery-title" data-section-name="Галерея">
   <div class="wrap">
     <header class="section__head reveal">
-      <p class="plaque">Галерея</p>
-      <h2 class="section__title" id="gallery-title">Пространство целиком</h2>
+      <p class="plaque"><span class="plaque__t">Галерея</span></p>
+      <h2 class="section__title" id="gallery-title">Как здесь проходят встречи</h2>
     </header>
     <button class="video-card video-card--wide" type="button" data-video="" data-poster="" data-title="Видео-обзор пространства" data-video-id="overview" hidden><span class="video-card__play"><svg class="ic"><use href="#i-play"/></svg></span><span class="video-card__text"><b>Видео-обзор пространства</b><small>Всё пространство за минуту</small></span></button>
     <div class="mosaic reveal" data-mosaic>
@@ -475,21 +492,21 @@
 <section class="section faq" id="faq" aria-labelledby="faq-title" data-section-name="Вопросы">
   <div class="wrap faq__wrap">
     <header class="section__head reveal">
-      <p class="plaque">Вопросы</p>
+      <p class="plaque"><span class="plaque__t">Вопросы</span></p>
       <h2 class="section__title" id="faq-title">Частые вопросы</h2>
     </header>
     <div class="faq__list reveal">
       <details><summary>В какое время можно проводить мероприятия?</summary><p>С утра и до 22:00 — время согласуем заранее.</p></details>
       <details><summary>Нужна ли предоплата?</summary><p>Да, размер обсуждаем индивидуально. Можно оплатить по счёту — работаем с ИП и ООО.</p></details>
-      <details><summary>Что если нужно перенести или отменить?</summary><p>Перенос или отмена — не позднее чем за 3 суток до мероприятия. <mark class="todo">ПРОВЕРИТЬ: что при более поздней отмене</mark></p></details>
+      <details><summary>Что если нужно перенести или отменить?</summary><p>Индивидуальные мероприятия в кабинетах можно отменить не позднее чем за 24 часа, мероприятия в групповых залах можно отменить не позднее чем за 3 суток.</p></details>
       <details><summary>Можно переставлять мебель и приносить своё оборудование?</summary><p>Да, обсуждаем лично под ваш формат.</p></details>
       <details><summary>Будет ли кто-то из центра на месте?</summary><p>Присутствие администратора согласуем при бронировании. Для постоянных партнёров возможен вариант с собственным ключом.</p></details>
       <details><summary>Можно ли проводить детские мероприятия?</summary><p>Да, для любого возраста — под ответственность ведущего.</p></details>
-      <details><summary>Как нас найти?</summary><p>От м.&nbsp;Пл.&nbsp;Восстания (выход 3, через Московский вокзал) идите по Лиговскому проспекту мимо ТЦ «Галерея». Почти сразу за ним — налево, через ворота во двор дома 44. Круглое строение обойдите слева и идите вдоль сквера к фонтану. Вход — слева от фонтана, ступеньки вниз сразу перед аркой.</p></details>
-      <details><summary>Есть ли ступеньки на входе?</summary><p>Да: 5 ступенек при входе и ещё 5 внутри. С инвалидной или детской коляской пройти, к сожалению, не получится.</p></details>
+      <details><summary>Как нас найти?</summary><p>От М.&nbsp;Пл.&nbsp;Восстания (выход 3: «Московский вокзал») идите по Лиговскому проспекту мимо ТЦ «Галерея». Почти сразу за ним — налево, через ворота во двор дома 44. Круглое строение обойдите слева и идите вдоль сквера к фонтану. Вход — слева от фонтана, ступеньки вниз сразу перед аркой.<a class="faq__more" href="#contacts">Смотрите подробную схему в разделе «Контакты»</a></p></details>
+      <details><summary>Есть ли ступеньки на входе?</summary><p>Да: 5 ступенек при входе и ещё 5 внутри. Можно с детской коляской (помощь при спуске).</p></details>
       <details><summary>Есть ли окна и чем дышать?</summary><p>В зале «Лотос» и кабинетах — небольшие окна под потолком, в «Мастер-зале» — окна 120 см. Работает приточно-вытяжная вентиляция и озонирование, при необходимости можно проветрить.</p></details>
       <details><summary>Можно прийти заранее, чтобы подготовиться?</summary><p>Немного заранее — конечно. Если нужно сильно раньше — договоримся.</p></details>
-      <details><summary>Есть ли чай и угощения для участников?</summary><p>Угощения и напитки приносите свои; в «Мастер-зале» есть чайник, микроволновка и холодильник. Постоянные партнёры могут по договорённости оставлять свои вещи.</p></details>
+      <details><summary>Есть ли чай и угощения для участников?</summary><p>Угощения и напитки приносите свои; в «Мастер-зале» есть кухня: чайник, микроволновка, индукционная плитка, холодильник и раковина. Постоянные партнёры могут по договорённости оставлять свои вещи.</p></details>
       <details><summary>Можно ли музыку и танцы?</summary><p>Танцы — да, барабаны — нет. Когда в центре нет других встреч, ограничений по громкости нет — соседям не слышно.</p></details>
       <details><summary>Где оставить машину?</summary><p>По запросу можно заехать во двор; парковочные места рядом обычно есть.</p></details>
       <details><summary>Можно ли снимать фото и видео?</summary><p>Да. Соблюдение прав участников и закона при съёмке — на ответственности ведущего.</p></details>
@@ -501,7 +518,7 @@
 <section class="contacts" id="contacts" aria-labelledby="contacts-title" data-section-name="Контакты">
   <div class="wrap contacts__grid">
     <div class="contacts__main reveal">
-      <p class="plaque plaque--light">Контакты</p>
+      <p class="plaque plaque--light"><span class="plaque__t">Контакты</span></p>
       <h2 class="contacts__title" id="contacts-title">Приходите посмотреть пространство</h2>
       <a class="contacts__phone" href="tel:+79219675459">+7 921 967-54-59</a>
       <div class="contacts__actions">
@@ -513,7 +530,7 @@
       </div>
       <dl class="contacts__info">
         <div><dt>Адрес</dt><dd>Санкт-Петербург, Лиговский проспект, 44В</dd></div>
-        <div><dt>Как дойти</dt><dd>7 минут пешком: от м.&nbsp;Пл.&nbsp;Восстания (выход 3) по Лиговскому проспекту мимо ТЦ «Галерея», затем налево через ворота во двор дома 44 и вдоль сквера к фонтану. Вход — ступеньки вниз сразу перед аркой.</dd></div>
+        <div><dt>Как дойти</dt><dd>7 минут пешком от Московского вокзала (м.&nbsp;Площадь Восстания — выход 3)</dd></div>
         <div><dt>Вход</dt><dd>Слева от фонтана во дворе</dd></div>
       </dl>
       <!-- Фото входа — сейчас кадры из видео «Как пройти». Заменить настоящими фото: assets/img/entrance/entrance-01.webp (фонтан), entrance-02.webp (дверь). -->
@@ -613,6 +630,8 @@
         <text class="rt-time" x="60" y="398">7 мин пешком</text>
 
         <!-- вход — красная точка; «МирРа» в нашем корпусе справа от входа -->
+        <circle class="rt-pulse" cx="294" cy="283" r="12"/>
+        <circle class="rt-pulse rt-pulse--2" cx="294" cy="283" r="12"/>
         <circle class="rt-dest-halo" cx="294" cy="283" r="12"/>
         <circle class="rt-dest" cx="294" cy="283" r="6"/>
   
@@ -653,7 +672,7 @@
   </div>
 </footer>
 
-<button class="to-top" type="button" data-to-top aria-label="Наверх" tabindex="-1" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg></button>
+<button class="to-top" type="button" data-to-top aria-label="Наверх" tabindex="-1" aria-hidden="true"><svg class="ic"><use href="#i-arrow"/></svg><span class="to-top__tip" aria-hidden="true" data-to-top-tip></span></button>
 
 <a class="float-cta" href="#contacts" data-contact data-float aria-hidden="true" tabindex="-1">Забронировать дату<svg class="ic"><use href="#i-arrow"/></svg></a>
 
@@ -683,6 +702,6 @@
   <p class="lb__count" data-lb-count></p>
 </dialog>
 
-<script src="assets/js/main.js?v=9" defer></script>
+<script src="assets/js/main.js?v=10" defer></script>
 </body>
 </html>

@@ -157,19 +157,61 @@
     findSection();
   }
 
-  /* ---------- кнопка «Наверх»: появляется после полутора экранов прокрутки ---------- */
+  /* ---------- кнопка «Наверх»: появляется после полутора экранов прокрутки.
+     После перехода по ссылке из текста (не из меню) временно становится «Вернуться» — стрелка влево,
+     ведёт на место, откуда ушли. Сама возвращается к «Наверх», если человек ушёл далеко или вернулся сам. ---------- */
   var toTop = $('[data-to-top]');
   if (toTop) {
+    var tip = $('[data-to-top-tip]', toTop);
+    var back = null;       // { y, target, at }
+    var tipTimer = 0;
     var syncTop = function () {
-      var on = window.scrollY > window.innerHeight * 1.5;
+      var on = !!back || window.scrollY > window.innerHeight * 1.5;
       if (on === toTop.classList.contains('is-on')) return;
       toTop.classList.toggle('is-on', on);
       toTop.setAttribute('aria-hidden', String(!on));
       toTop.tabIndex = on ? 0 : -1;
     };
+    var setBack = function (state) {
+      back = state;
+      toTop.classList.toggle('is-back', !!back);
+      clearTimeout(tipTimer);
+      toTop.classList.remove('show-tip');
+      if (back) {
+        toTop.setAttribute('aria-label', back.label);
+        tip.textContent = back.label;
+        toTop.classList.add('show-tip');
+        tipTimer = setTimeout(function () { toTop.classList.remove('show-tip'); }, 3500);
+      } else {
+        toTop.setAttribute('aria-label', 'Наверх');
+      }
+      syncTop();
+    };
+    var checkBack = function () {
+      if (!back || Date.now() - back.at < 1500) return;   // пока идёт плавная прокрутка к цели — не трогаем
+      var h = window.innerHeight;
+      var farFromTarget = Math.abs(back.target.getBoundingClientRect().top) > h * 2.5;
+      var nearOrigin = Math.abs(window.scrollY - back.y) < h * 0.3;
+      if (farFromTarget || nearOrigin) setBack(null);
+    };
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a || a.hasAttribute('data-contact') || a.closest('.nav, .menu, .header, .footer, .skip')) return;
+      var target = document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)));
+      if (!target) return;
+      var from = a.closest('[data-section-name]');
+      var name = from && from.getAttribute('data-section-name');
+      setBack({ y: window.scrollY, target: target, at: Date.now(), label: name ? 'Назад к разделу «' + name + '»' : 'Вернуться назад' });
+    });
     syncTop();
-    window.addEventListener('scroll', syncTop, { passive: true });
+    window.addEventListener('scroll', function () { syncTop(); checkBack(); }, { passive: true });
     toTop.addEventListener('click', function () {
+      if (back) {
+        var y = back.y;
+        setBack(null);
+        window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+        return;
+      }
       window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
       var brand = $('.brand'); if (brand) brand.focus({ preventScroll: true });
     });
