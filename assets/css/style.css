@@ -407,6 +407,7 @@ body.menu-open { overflow: hidden; }
 .room__area { font: 500 .62em/1 var(--serif); color: var(--emerald-soft); font-style: italic; }
 .room__desc { color: var(--ink-2); max-width: 34em; }
 .room__note { margin-top: 22px; max-width: 30em; padding-left: 14px; border-left: 2px solid var(--brass-light); font: italic 600 19px/1.35 var(--serif); color: var(--emerald); }
+.room__note-u { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; text-decoration-color: rgba(15, 77, 61, .55); }
 .specs { margin-top: 24px; border-top: 1px solid var(--line); }
 .specs > div { display: grid; grid-template-columns: 9.5em 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
 .specs dt { color: var(--emerald-soft); font-weight: 600; font-size: 13.5px; letter-spacing: .01em; }
