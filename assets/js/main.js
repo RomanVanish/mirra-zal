@@ -224,7 +224,7 @@
   var lbItems = [];
   var lbReturn = null;
 
-  var lbIndex = function () { return Math.round(lbTrack.scrollLeft / lbTrack.clientWidth); };
+  var lbIndex = function () { var w = lbTrack.clientWidth; return w ? Math.round(lbTrack.scrollLeft / w) : 0; };
   var lbUpdate = function () {
     lbCount.textContent = (lbIndex() + 1) + ' / ' + lbItems.length;
     var cur = lbTrack.children[lbIndex()];
@@ -318,7 +318,7 @@
     var prev = $('[data-prev]', g);
     var next = $('[data-next]', g);
     if (slides.length < 2) g.classList.add('gallery--single');
-    var idx = function () { return Math.round(track.scrollLeft / track.clientWidth); };
+    var idx = function () { var w = track.clientWidth; return w ? Math.round(track.scrollLeft / w) : 0; };
     var update = function () {
       var i = idx();
       count.textContent = (i + 1) + ' / ' + slides.length;

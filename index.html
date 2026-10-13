@@ -23,7 +23,7 @@
 <link rel="preload" href="assets/fonts/cormorant-garamond-cyrillic-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/manrope-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/img/lotos-35/lotos-02-800.webp" imagesrcset="assets/img/lotos-35/lotos-02-800.webp 800w, assets/img/lotos-35/lotos-02-1600.webp 1600w" imagesizes="(min-width: 1024px) 55vw, 100vw" fetchpriority="high">
-<link rel="stylesheet" href="assets/css/style.css?v=51">
+<link rel="stylesheet" href="assets/css/style.css?v=56">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <!-- class="show-placeholders": показывать места под ещё не снятые видео. Убрать класс перед отправкой ссылки, если заглушки не нужны. -->
@@ -148,7 +148,7 @@
   <ul class="facts__list">
     <li><b>4</b><span>помещения</span></li>
     <li><b>10–50</b><span>квадратных метров</span></li>
-    <li><b>30+</b><span>человек в залах</span></li>
+    <li><b><small>до</small> 30+</b><span>человек в залах</span></li>
     <li><b>7</b><span>минут от метро</span></li>
   </ul>
 </section>
@@ -273,6 +273,7 @@
       <div class="room__body">
         <p class="room__desc">Просторный зал с большими столами и кухней — для мастер-классов, арт-терапии, рисования и рабочих встреч. Столы можно убрать из центра — тогда почти вся площадь свободна.</p>
         <dl class="specs">
+          <div><dt>Вместимость</dt><dd>30+ человек (если убрать столы)</dd></div>
           <div><dt>За столами</dt><dd>10–12 человек свободно</dd></div>
           <div><dt>Кухня</dt><dd>чайник, микроволновка, индукционная плитка, холодильник, раковина</dd></div>
           <div><dt>Окна</dt><dd>120 см</dd></div>
@@ -425,7 +426,7 @@
         <p>Фиксированная стоимость за вечер или блок часов.</p>
         <div class="terms__rates" role="table" aria-label="Стоимость: кабинет и зал">
           <div role="row"><span role="rowheader">час</span><b role="cell">от 400&nbsp;<i class="rub">₽</i></b><b role="cell">от 800&nbsp;<i class="rub">₽</i></b></div>
-          <div role="row"><span role="rowheader">вечер</span><b role="cell">1000&nbsp;<i class="rub">₽</i></b><b role="cell">1500&nbsp;<i class="rub">₽</i></b></div>
+          <div role="row"><span role="rowheader">вечер</span><b role="cell">от 1000&nbsp;<i class="rub">₽</i></b><b role="cell">от 1500&nbsp;<i class="rub">₽</i></b></div>
           <div role="row" class="terms__rates-cols"><span></span><small role="columnheader">кабинет</small><small role="columnheader">зал</small></div>
         </div>
       </li>
@@ -438,7 +439,7 @@
       <li>
         <span class="terms__n">III</span>
         <h3>Регулярная группа</h3>
-        <p>Особые условия для постоянных клиентов</p>
+        <p class="terms__price terms__price--text">Особые условия для постоянных клиентов</p>
       </li>
     </ol>
     <div class="terms__accent reveal">
@@ -702,6 +703,6 @@
   <p class="lb__count" data-lb-count></p>
 </dialog>
 
-<script src="assets/js/main.js?v=10" defer></script>
+<script src="assets/js/main.js?v=11" defer></script>
 </body>
 </html>
