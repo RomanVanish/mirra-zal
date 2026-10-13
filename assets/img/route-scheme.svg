@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Схема «Как пройти» к «МирРа» (самостоятельный файл: свои стили, шрифты из ../fonts, фон). -->
+<svg xmlns="http://www.w3.org/2000/svg" class="route" viewBox="0 0 360 460" width="720" height="920" role="img" aria-labelledby="route-t">
+  <title id="route-t">Схема пути: от метро «Площадь Восстания» (выход 3, через Московский вокзал) по Лиговскому проспекту вдоль ТЦ «Галерея», налево в проход двора дома 44, через ворота к шайбе, обойти её слева и идти вдоль сквера к корпусу 44В; вход в «МирРа» — ступеньки вниз сразу перед аркой</title>
+  <style>
+@font-face { font-family: 'Manrope'; font-weight: 400; src: url(../fonts/manrope-cyrillic-400-normal.woff2) format('woff2'); unicode-range: U+0400-045F; }
+@font-face { font-family: 'Manrope'; font-weight: 400; src: url(../fonts/manrope-latin-400-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+2000-206F; }
+@font-face { font-family: 'Manrope'; font-weight: 500; src: url(../fonts/manrope-cyrillic-500-normal.woff2) format('woff2'); unicode-range: U+0400-045F; }
+@font-face { font-family: 'Manrope'; font-weight: 500; src: url(../fonts/manrope-latin-500-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+2000-206F; }
+@font-face { font-family: 'Manrope'; font-weight: 600; src: url(../fonts/manrope-cyrillic-600-normal.woff2) format('woff2'); unicode-range: U+0400-045F; }
+@font-face { font-family: 'Manrope'; font-weight: 600; src: url(../fonts/manrope-latin-600-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+2000-206F; }
+@font-face { font-family: 'Cormorant'; font-weight: 500; src: url(../fonts/cormorant-garamond-cyrillic-500-normal.woff2) format('woff2'); unicode-range: U+0400-045F; }
+@font-face { font-family: 'Cormorant'; font-weight: 500; src: url(../fonts/cormorant-garamond-latin-500-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+2000-206F; }
+@font-face { font-family: 'Cormorant'; font-weight: 600 700; src: url(../fonts/cormorant-garamond-cyrillic-600-normal.woff2) format('woff2'); unicode-range: U+0400-045F; }
+@font-face { font-family: 'Cormorant'; font-weight: 600 700; src: url(../fonts/cormorant-garamond-latin-600-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+2000-206F; }
+@font-face { font-family: 'Cormorant'; font-style: italic; font-weight: 500 700; src: url(../fonts/cormorant-garamond-cyrillic-500-italic.woff2) format('woff2'); unicode-range: U+0400-045F; }
+@font-face { font-family: 'Cormorant'; font-style: italic; font-weight: 500 700; src: url(../fonts/cormorant-garamond-latin-500-italic.woff2) format('woff2'); unicode-range: U+0000-00FF, U+2000-206F; }
+.route { width: 100%; height: auto; max-height: none; display: block; overflow: visible; }
+.rt-house-frame { fill: rgba(241, 234, 219, .03); stroke: rgba(241, 234, 219, .45); stroke-width: 1.3; }
+.rt-wing { fill: rgba(241, 234, 219, .13); stroke: rgba(11, 58, 46, .9); stroke-width: 1.5; }
+.rt-wing--ours { fill: rgba(217, 198, 159, .26); stroke: #D9C69F; stroke-width: 1.3; }
+.rt-arch-label { fill: #F1EADB; font: 600 9.5px 'Manrope', 'Segoe UI', sans-serif; letter-spacing: .02em; }
+.rt-bed { fill: #C9DDB8; fill-opacity: .7; }
+.rt-label--in-wing { fill: #F1EADB; font: 600 11.5px 'Manrope', 'Segoe UI', sans-serif; }
+.rt-yard { fill: rgba(241, 234, 219, .05); }
+.rt-house { fill: rgba(241, 234, 219, .13); stroke: rgba(241, 234, 219, .45); stroke-width: 1.3; }
+.rt-ours { fill: rgba(217, 198, 159, .2); }
+.rt-arch-pass { fill: rgba(241, 234, 219, .3); }
+.rt-label--gate { fill: #D9C69F; font: 600 11px 'Manrope', 'Segoe UI', sans-serif; }
+.rt-entry { fill: #FF6F61; font: italic 700 14px 'Cormorant', 'Cormorant Garamond', Georgia, serif; }
+.rt-street--join { stroke-linejoin: round; }
+.rt-square-ring { fill: none; stroke: rgba(241, 234, 219, .26); stroke-width: 12; }
+.rt-square-isle { fill: #9DBF8E; fill-opacity: .35; stroke: #B9D6A9; stroke-opacity: .5; }
+.rt-obelisk { fill: #D9C69F; }
+.rt-obelisk-base { stroke: #D9C69F; stroke-width: 1.6; stroke-linecap: round; }
+.rt-square-name { fill: rgba(241, 234, 219, .85); font: italic 500 13px 'Cormorant', 'Cormorant Garamond', Georgia, serif; }
+.rt-street--narrow { stroke-width: 15; }
+.rt-star { fill: #E8C66A; }
+.rt-dest-badge { fill: #D9C69F; }
+.rt-label.rt-label--big { font-size: 14.8px; }
+.rt-label--station { font-weight: 600; font-size: 13px; }
+.rt-label--exit { font-size: 12px; fill: rgba(241, 234, 219, .85); }
+.rt-street { stroke: rgba(241, 234, 219, .26); stroke-width: 20; fill: none; }
+.rt-street-name { fill: rgba(241, 234, 219, .6); font: 600 10px 'Manrope', 'Segoe UI', sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+.rt-block { fill: rgba(241, 234, 219, .07); stroke: rgba(241, 234, 219, .32); stroke-width: 1; }
+.rt-block--44 { fill: rgba(241, 234, 219, .1); }
+.rt-block--ours { fill: rgba(217, 198, 159, .2); stroke: #D9C69F; stroke-width: 1.4; }
+.rt-num { fill: rgba(241, 234, 219, .75); font: 600 13px 'Manrope', 'Segoe UI', sans-serif; }
+.rt-num--ours { fill: #FF6F61; font-size: 15px; font-weight: 700; }
+.rt-label { fill: #F1EADB; font: 500 12.5px 'Manrope', 'Segoe UI', sans-serif; }
+.rt-label--dim { fill: rgba(241, 234, 219, .72); }
+.rt-label--accent { fill: #D9C69F; font: italic 500 15px 'Cormorant', 'Cormorant Garamond', Georgia, serif; }
+.rt-lane { stroke: rgba(241, 234, 219, .2); stroke-width: 10; fill: none; stroke-linecap: round; }
+.rt-puck { fill: #8FA99B; stroke: #C9D8CE; stroke-width: 1.2; }
+.rt-park { fill: #9DBF8E; fill-opacity: .22; stroke: #B9D6A9; stroke-opacity: .35; }
+.rt-fountain { fill: #8FC4C0; fill-opacity: .4; stroke: #BFE3DF; stroke-width: 1.3; }
+.rt-fountain-jet { stroke: #E6F5F3; stroke-width: 1.4; fill: none; stroke-linecap: round; }
+.rt-gate { stroke: #D9C69F; stroke-width: 2; stroke-dasharray: 2 3; }
+.rt-gate-post { fill: #D9C69F; }
+.rt-arch-edge { stroke: #D9C69F; stroke-width: 1.4; }
+.rt-label--arch { fill: #F1EADB; font: 600 12.5px 'Manrope', 'Segoe UI', sans-serif; }
+.rt-label--accent-sm { fill: #D9C69F; font: italic 600 15px 'Cormorant', 'Cormorant Garamond', Georgia, serif; }
+.rt-arch-sign { stroke: #F1EADB; stroke-width: 1.4; fill: none; }
+.rt-metro { fill: #0B3A2E; stroke: #E06A6A; stroke-width: 1.6; }
+.rt-metro-m { fill: #E06A6A; font: 700 13px 'Manrope', 'Segoe UI', sans-serif; }
+.rt-path { fill: none; stroke: #D9C69F; stroke-width: 2; stroke-dasharray: 4 5; stroke-linecap: round; }
+.rt-path-mark { stroke: none; fill: none; }
+.rt-time { fill: #D9C69F; font: 500 21.3px 'Cormorant', 'Cormorant Garamond', Georgia, serif; }
+.rt-dest { fill: #E2574C; }
+.rt-dest-halo { fill: rgba(226, 87, 76, .22); stroke: #E2574C; stroke-opacity: .8; }
+.rt-dest-label { fill: #0B3A2E; font: 700 16px 'Cormorant', 'Cormorant Garamond', Georgia, serif; }
+.rt-callout { fill: none; stroke: #D9C69F; stroke-opacity: .6; stroke-width: 1; }
+</style>
+  <rect x="-20" y="-20" width="400" height="500" fill="#0B3A2E"/>
+  <defs>
+    <path id="rt-chev" d="M-4.5 -3 L0 1.5 L4.5 -3" fill="none" stroke="#D9C69F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </defs>
+
+  <!-- улицы: после площади дорога расходится — выше Невский, ниже Гончарная -->
+  <path class="rt-street rt-street--join" d="M-10 48 L74 40 L370 52"/>
+  <path class="rt-street rt-street--narrow" d="M74 40 L370 130"/>
+  <path class="rt-street" d="M40 -10 V470"/>
+  <text class="rt-street-name" x="226" y="49.5" transform="rotate(2.3 226 49.5)">Невский пр.</text>
+  <text class="rt-street-name" x="246" y="95" transform="rotate(16.9 246 95)">Гончарная ул.</text>
+  <text class="rt-street-name" x="44" y="226" transform="rotate(-90 44 226)">Лиговский пр.</text>
+  <!-- площадь Восстания: кольцо развязки, островок, обелиск со звездой -->
+  <circle class="rt-square-ring" cx="74" cy="40" r="23"/>
+  <circle class="rt-square-isle" cx="74" cy="40" r="15"/>
+  <path class="rt-obelisk" d="M74 31 L76.2 47 H71.8 Z"/>
+  <path class="rt-obelisk-base" d="M69.5 48.5 H78.5"/>
+  <path class="rt-star" d="M74.00 22.10 L75.06 25.04 L78.18 25.14 L75.71 27.06 L76.59 30.06 L74.00 28.30 L71.41 30.06 L72.29 27.06 L69.82 25.14 L72.94 25.04 Z"/>
+
+  <!-- второй выход метро — в северо-западном углу перекрёстка, без подписи -->
+  <circle class="rt-metro" cx="17" cy="20" r="11"/>
+  <text class="rt-metro-m" x="17" y="24.5" text-anchor="middle">М</text>
+
+  <!-- Московский вокзал: выход метро №3 «Московский вокзал» -->
+  <path class="rt-block rt-block--station" d="M63 80 H150 L274 117.6 V144 H63 Z"/>
+  <circle class="rt-metro" cx="63" cy="104" r="11"/>
+  <text class="rt-metro-m" x="63" y="108.5" text-anchor="middle">М</text>
+  <text class="rt-label rt-label--station" x="77" y="108.5">Пл. Восстания</text>
+  <text class="rt-label rt-label--exit" x="70" y="131">выход 3: «Московский вокзал»</text>
+
+  <g transform="translate(0 20)">
+  <!-- ТЦ «Галерея» — треугольник на основании, вершина вверху усечена -->
+  <path class="rt-block" d="M60 142 L72 132 H152 L282 222 H60 Z"/>
+  <text class="rt-label rt-label--dim rt-label--big" x="121" y="169" text-anchor="middle" dominant-baseline="middle">ТЦ</text>
+  <text class="rt-label rt-label--dim rt-label--big" x="121" y="186" text-anchor="middle" dominant-baseline="middle">«Галерея»</text>
+
+  <!-- дом 44 — единый массив: сплошной внешний контур, дворики — пустоты внутри -->
+  <path class="rt-house" fill-rule="evenodd" d="M61 234 H360 V369 H61 a3 3 0 0 1 -3 -3 V237 a3 3 0 0 1 3 -3 Z
+    M58 288 H132 V246 H158 V272 H270 V248 H292 V355 H270 V330 H158 V356 H132 V312 H58 Z"/>
+  <!-- наш корпус 44В — подсветка внутри того же дома -->
+  <rect class="rt-ours" x="292" y="234" width="68" height="135"/>
+  <!-- арка: сквозной проход внутри корпуса -->
+  <rect class="rt-arch-pass" x="292" y="250" width="68" height="20"/>
+  <text class="rt-num" x="95" y="267" text-anchor="middle">44</text>
+  <text class="rt-num" x="95" y="355" text-anchor="middle">44</text>
+  <text class="rt-num" x="214" y="257" text-anchor="middle">44Б</text>
+  <text class="rt-num" x="214" y="355" text-anchor="middle">44</text>
+  <text class="rt-num rt-num--ours" x="326" y="352" text-anchor="middle">44В</text>
+
+  <!-- проезды: проход от ворот → шайба → дорожки вверх и вниз к парадным, вправо вдоль сквера -->
+  <path class="rt-lane" d="M124 300 H140"/>
+  <path class="rt-lane" d="M154 292 C160 286 166 283 176 283 H294"/>
+  <path class="rt-lane" d="M154 308 C160 314 166 317 176 317 H236"/>
+
+  <!-- сквер с клумбами -->
+  <rect class="rt-park" x="174" y="294" width="76" height="12" rx="6"/>
+  <circle class="rt-bed" cx="189" cy="300" r="2.6"/>
+  <circle class="rt-bed" cx="212" cy="300" r="2.6"/>
+  <circle class="rt-bed" cx="235" cy="300" r="2.6"/>
+  <!-- фонтан и подпись сразу под ним -->
+  <circle class="rt-fountain" cx="279" cy="300" r="10"/>
+  <path class="rt-fountain-jet" d="M279 304 v-9 M279 297 c-3.5-3.5-7-2.5-8 1.5 M279 297 c3.5-3.5 7-2.5 8 1.5"/>
+  <text class="rt-label" x="268" y="322" text-anchor="middle">Фонтан</text>
+
+  <!-- шайба — непрозрачная -->
+  <circle class="rt-puck" cx="145" cy="300" r="13"/>
+
+  <!-- ворота — перед шайбой; подпись в южном корпусе -->
+  <rect class="rt-gate-post" x="121" y="286" width="7" height="7" rx="1"/>
+  <rect class="rt-gate-post" x="121" y="307" width="7" height="7" rx="1"/>
+  <path class="rt-gate" d="M124.5 293 V307"/>
+  <text class="rt-label rt-label--gate" x="129" y="323.5" text-anchor="end">Ворота</text>
+
+  <!-- арка: проём сквозь 44В, обращён к идущему -->
+  <path class="rt-arch-sign" d="M292 251 h2 a9 9 0 0 1 0 18 h-2"/>
+  <text class="rt-arch-label" x="306" y="263.5">Арка</text>
+
+  <!-- путь -->
+  <path class="rt-path"
+    d="M57 95 C56 97 55 99 55 103 V292 C55 297 59 300 64 300 H118 C126 300 130 296 134 291 C140 285 150 283 162 283 H288"/>
+  <use href="#rt-chev" transform="translate(55 168)"/>
+  <use href="#rt-chev" transform="translate(55 248)"/>
+  <use href="#rt-chev" transform="translate(228 283) rotate(-90)"/>
+  <text class="rt-time" x="60" y="398">7 мин пешком</text>
+
+  <!-- вход — красная точка; «МирРа» в нашем корпусе справа от входа -->
+  <circle class="rt-dest-halo" cx="294" cy="283" r="12"/>
+  <circle class="rt-dest" cx="294" cy="283" r="6"/>
+  
+  <text class="rt-entry" x="304.5" y="287.5">Вход</text>
+  <rect class="rt-dest-badge" x="293.5" y="301" width="65" height="21" rx="10.5"/>
+  <text class="rt-dest-label" x="326" y="316" text-anchor="middle">«МирРа»</text>
+  <text class="rt-label rt-label--accent" x="354" y="398" text-anchor="end">Вход — сразу перед аркой,</text>
+  <text class="rt-label rt-label--accent" x="354" y="418" text-anchor="end">ступеньки вниз</text>
+  </g>
+</svg>
