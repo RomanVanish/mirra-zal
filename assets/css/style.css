@@ -384,7 +384,7 @@ br.m-br { display: none; }
 .place__text p { color: var(--ink-2); max-width: 36em; }
 .place__bridge {
   margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line);
-  font: italic 500 24px/1.25 var(--serif) !important; color: var(--emerald-soft) !important;
+  font: italic 700 24px/1.25 var(--serif) !important; color: var(--emerald-soft) !important;
 }
 @media (min-width: 1024px) {
   .place__photo { margin-top: 56px; }
