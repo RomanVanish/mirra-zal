@@ -121,6 +121,8 @@ mark.todo::before { content: "["; } mark.todo::after { content: "]"; }
   filter: url(#fx-paint) drop-shadow(0 .6px .4px rgba(8, 41, 31, .35)) drop-shadow(0 1px 0 rgba(255, 255, 255, .7));
 }
 .js .reveal.is-in .plaque__t, .plaque:hover .plaque__t { animation: plaque-glint 1.8s .5s var(--ease) both; }
+/* первая табличка на первом экране не «появляется» при прокрутке — блик проходит сразу после загрузки */
+.hero .plaque__t { animation: plaque-glint 1.8s .9s var(--ease) both; }
 @keyframes plaque-glint { from { background-position: 100% 0, 0 0, 0 0; } to { background-position: 0 0, 0 0, 0 0; } }
 .plaque--light { border-image-source: url(../img/plaque-light.svg); color: var(--brass-light); }
 .plaque--light .plaque__t {
@@ -298,6 +300,8 @@ body.menu-open { overflow: hidden; }
 .hero__addr-txt { display: grid; gap: 1px; line-height: 1.3; }
 .hero__addr-txt b { font-weight: 600; font-size: 15px; color: var(--ink); }
 .hero__addr-txt span { font-size: 13px; color: var(--ink-2); }
+br.m-br { display: none; }
+@media (max-width: 1023px) { br.m-br { display: inline; } .place__route { font-size: min(16px, calc((100vw - 40px) / 20.9)); } }
 .hero__addr-exit, .hero__addr-line { display: block; }
 .hero__addr-line { white-space: nowrap; }
 @media (max-width: 374px) { .hero__addr-txt span { font-size: 12px; } }
@@ -404,7 +408,8 @@ body.menu-open { overflow: hidden; }
 .room__body { grid-area: body; }
 .room__kind { margin-bottom: 4px; font: italic 500 clamp(22px, 5.4vw, 28px)/1.1 var(--serif); color: var(--emerald-soft); }
 .room__name { font: 500 clamp(36px, 9vw, 54px)/1.05 var(--serif); display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; }
-.room__area { font: 500 .62em/1 var(--serif); color: var(--emerald-soft); font-style: italic; }
+.room__area { font: italic 700 .62em/1 var(--serif); color: var(--emerald-soft); }
+@media (max-width: 1023px) { .room__area { font-size: .72em; } .soon__title span { font-size: 1.12em; } }
 .room__desc { color: var(--ink-2); max-width: 34em; }
 .room__note { margin-top: 22px; max-width: 30em; padding-left: 14px; border-left: 2px solid var(--brass-light); font: italic 600 19px/1.35 var(--serif); color: var(--emerald); }
 .room__note-u { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; text-decoration-color: rgba(15, 77, 61, .55); }
@@ -501,7 +506,7 @@ body.menu-open { overflow: hidden; }
   background: linear-gradient(var(--bg), var(--bg)) padding-box;
 }
 .soon__title { font: 500 32px/1.1 var(--serif); }
-.soon__title span { color: var(--emerald-soft); font-style: italic; }
+.soon__title span { color: var(--emerald-soft); font-style: italic; font-weight: 700; }
 .soon__body p { margin-top: 8px; color: var(--ink-2); }
 .soon__btn { justify-self: start; }
 .btn--ghost.soon__btn { border: 3px solid #1F6B54; color: #2A6E5A; font-weight: 700; font-size: 16px; }
