@@ -361,6 +361,13 @@
     mItems.forEach(function (b, i) { b.addEventListener('click', function () { lbOpen(mData, i, b); }); });
   }
 
+  /* ---------- ленты фото (удобства): по нажатию — на весь экран с листанием ---------- */
+  $$('[data-photos]').forEach(function (box) {
+    var items = $$('[data-photo]', box);
+    var data = items.map(function (b) { var im = $('img', b); return { src: fullSrc(im), alt: im.alt }; });
+    items.forEach(function (b, i) { b.addEventListener('click', function () { lbOpen(data, i, b); }); });
+  });
+
   /* ---------- фото входа ---------- */
   var ent = $('[data-entrance]');
   if (ent) {
@@ -411,41 +418,62 @@
     btn.addEventListener('click', function () { lbOpen([{ video: src, poster: btn.dataset.poster, alt: btn.dataset.title }], 0, btn); });
   });
 
-  /* ---------- свет под формат (секция показывается, когда в ней есть пары фото) ---------- */
+  /* ---------- свет под формат: каждые 4 с — следующий свет, после последнего — следующее помещение (по кругу).
+     Кнопки помещений и света — поверх фото. Если свет выбрали вручную, автосмена продолжится через 20 с. ---------- */
   var light = $('#light');
   var sets = light ? $$('.light__set', light) : [];
   if (sets.length) {
     light.hidden = false;
     var roomsBar = $('[data-light-rooms]', light);
+    var pics = $('[data-light-pics]', light);
     var stage = $('[data-light-stage]', light);
     var modesBar = $('[data-light-modes]', light);
     var note = $('[data-light-note]', light);
+    var STEP = 4000, RESUME = 20000;
+    var cur = { imgs: [], figs: [], i: 0 }, timer = 0, visible = false;
+    var pick = function (i) {
+      cur.i = i;
+      cur.imgs.forEach(function (im, k) { im.classList.toggle('is-on', k === i); });
+      $$('button', modesBar).forEach(function (b, k) { b.setAttribute('aria-pressed', String(k === i)); });
+      note.textContent = cur.figs[i].dataset.note || '';
+    };
+    var schedule = function (delay) {
+      clearTimeout(timer);
+      if (reduce || !visible || document.hidden) return;
+      timer = setTimeout(function () {
+        // после последнего света — следующее помещение, по кругу
+        if (cur.i < cur.imgs.length - 1) { pick(cur.i + 1); schedule(STEP); }
+        else { showRoom(sets[(sets.indexOf(cur.set) + 1) % sets.length]); }
+      }, delay);
+    };
     var showRoom = function (set) {
       $$('button', roomsBar).forEach(function (b) { b.setAttribute('aria-selected', String(b._set === set)); });
-      stage.innerHTML = ''; modesBar.innerHTML = '';
-      var figs = $$('figure', set);
-      var imgs = figs.map(function (f) { var im = $('img', f).cloneNode(); stage.appendChild(im); return im; });
-      var pick = function (i) {
-        imgs.forEach(function (im, k) { im.classList.toggle('is-on', k === i); });
-        $$('button', modesBar).forEach(function (b, k) { b.setAttribute('aria-pressed', String(k === i)); });
-        note.textContent = figs[i].dataset.note || '';
-      };
-      figs.forEach(function (f, i) {
+      pics.innerHTML = ''; modesBar.innerHTML = '';
+      cur.set = set;
+      cur.figs = $$('figure', set);
+      cur.imgs = cur.figs.map(function (f) { var im = $('img', f).cloneNode(); im.removeAttribute('loading'); pics.appendChild(im); return im; });
+      cur.figs.forEach(function (f, i) {
         var b = document.createElement('button');
         b.type = 'button'; b.textContent = f.dataset.mode;
-        b.addEventListener('click', function () { pick(i); });
+        b.addEventListener('click', function () { pick(i); schedule(RESUME); });
         modesBar.appendChild(b);
       });
       pick(0);
+      schedule(STEP);
     };
     if (sets.length > 1) {
       sets.forEach(function (set) {
         var b = document.createElement('button');
-        b.type = 'button'; b.setAttribute('role', 'tab'); b.textContent = set.dataset.room; b._set = set;
+        b.type = 'button'; b.setAttribute('role', 'tab'); b.textContent = set.dataset.room.replace(/[«»]/g, ''); b._set = set;
         b.addEventListener('click', function () { showRoom(set); });
         roomsBar.appendChild(b);
       });
     } else { roomsBar.hidden = true; }
+    // автосмена идёт, только пока блок на экране и вкладка открыта
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { visible = en[0].isIntersecting; schedule(STEP); }, { threshold: 0.35 }).observe(stage);
+    } else { visible = true; }
+    document.addEventListener('visibilitychange', function () { schedule(STEP); });
     showRoom(sets[0]);
   }
 })();

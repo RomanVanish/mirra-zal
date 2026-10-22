@@ -451,7 +451,7 @@ br.m-br { display: none; }
 }
 .gallery__track::-webkit-scrollbar { display: none; }
 .gallery__slide { flex: 0 0 100%; scroll-snap-align: start; overflow: hidden; cursor: zoom-in; }
-.gallery__slide img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 1.2s var(--ease-out); }
+.gallery__slide img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; transition: transform 1.2s var(--ease-out); }
 @media (hover: hover) { .gallery__slide:hover img { transform: scale(1.025); } }
 .gallery__ui { position: absolute; inset: 0; pointer-events: none; }
 .gallery__count {
@@ -518,20 +518,26 @@ br.m-br { display: none; }
 }
 
 /* ---------- свет под формат ---------- */
-.light__rooms, .light__modes { display: flex; flex-wrap: wrap; gap: 8px; }
-.light__rooms { margin-bottom: 20px; }
-.light__modes { margin-top: 16px; }
-.light__rooms button, .light__modes button {
-  min-height: 44px; padding: 0 18px; border-radius: 40px; border: 1px solid var(--line-2); font-size: 14px;
-  transition: background-color .35s var(--ease), color .35s, border-color .35s;
+.light__stage { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 3 / 2; background: var(--bg-2); }
+.light__pics img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.1s var(--ease); }
+.light__pics img.is-on { opacity: 1; }
+/* кнопки поверх фото: залы — сверху слева, свет — снизу слева */
+.light__rooms, .light__modes {
+  position: absolute; left: 12px; z-index: 2; display: flex; flex-wrap: wrap; gap: 2px; max-width: calc(100% - 24px);
+  padding: 3px; border-radius: 22px; background: rgba(20, 28, 25, .55); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
 }
-.light__rooms button[aria-selected="true"], .light__modes button[aria-pressed="true"] { background: var(--emerald); border-color: var(--emerald); color: var(--on-dark); }
-.light__stage { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 3; background: var(--bg-2); }
-.light__stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .6s var(--ease); }
-.light__stage img.is-on { opacity: 1; }
+.light__rooms { top: 12px; }
+.light__modes { bottom: 12px; }
+.light__rooms button, .light__modes button {
+  min-height: 34px; padding: 0 13px; border-radius: 40px; color: #fff; font: 500 13px/1 var(--sans); letter-spacing: .02em;
+  transition: background-color .4s var(--ease), color .4s var(--ease);
+}
+.light__rooms button[aria-selected="true"], .light__modes button[aria-pressed="true"] { background: rgba(247, 243, 236, .95); color: var(--ink); }
+@media (max-width: 400px) { .light__rooms button, .light__modes button { padding: 0 10px; font-size: 12px; min-height: 32px; } .light__rooms, .light__modes { left: 8px; max-width: calc(100% - 16px); } .light__rooms { top: 8px; } .light__modes { bottom: 8px; } }
+@media (min-width: 1024px) { .light__rooms button, .light__modes button { min-height: 38px; padding: 0 16px; font-size: 14px; } .light__rooms, .light__modes { left: 16px; } .light__rooms { top: 16px; } .light__modes { bottom: 16px; } }
 .light__note { margin-top: 12px; font: italic 500 22px/1.3 var(--serif); }
 .light__set { display: none; }
-@media (min-width: 1024px) { .light__stage { aspect-ratio: 16 / 9; } }
+@media (min-width: 1024px) { .light__stage { max-width: min(880px, calc((100vh - 260px) * 1.5)); } }
 
 /* ---------- форматы (компактно, перед помещениями) ---------- */
 .section--tight { padding-block: calc(var(--section) * .62); }
@@ -609,10 +615,10 @@ br.m-br { display: none; }
   .details__list { grid-template-columns: 1fr 1fr; column-gap: 48px; }
 }
 @media (min-width: 1024px) {
-  .details__list { grid-template-columns: repeat(4, 1fr); column-gap: 0; border-top: 0; }
+  .details__list { grid-template-columns: repeat(3, 1fr); column-gap: 0; border-top: 0; }
   .details__list li { flex-direction: column; align-items: flex-start; gap: 22px; padding: 32px 28px 36px; border-bottom: 0; border-left: 1px solid var(--line); }
-  .details__list li:nth-child(4n+1) { border-left: 0; }
-  .details__list li:nth-child(-n+4) { border-bottom: 1px solid var(--line); }
+  .details__list li:nth-child(3n+1) { border-left: 0; }
+  .details__list li:nth-child(-n+6) { border-bottom: 1px solid var(--line); }
   .medal { width: 72px; height: 72px; }
   .ai { width: 44px; height: 44px; }
   .details__list h3 { font-size: 16px; }
@@ -1057,7 +1063,15 @@ body.sheet-open { overflow: hidden; }
   background: var(--pill); color: var(--emerald-soft); font: 600 10px/1.2 var(--sans); letter-spacing: .14em; text-transform: uppercase;
 }
 .video-card .soon-badge { background: rgba(247, 243, 236, .92); }
-.gallery__slide--light[data-demo]::after {
-  content: "демо"; position: absolute; right: 12px; top: 12px; z-index: 2; padding: 4px 9px; border-radius: 20px;
-  background: rgba(181, 72, 47, .9); color: #fff; font: 600 10px/1.2 var(--sans); letter-spacing: .14em; text-transform: uppercase;
+
+/* ---------- лента фото удобств под «Деталями» ---------- */
+.amen { display: flex; gap: 12px; margin-top: 28px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); }
+.amen::-webkit-scrollbar { display: none; }
+.amen__item { position: relative; flex: none; width: min(72vw, 300px); padding: 0; border: 0; border-radius: var(--radius); overflow: hidden; cursor: zoom-in; scroll-snap-align: start; background: var(--bg-2); }
+.amen__item img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; transition: transform 1.2s var(--ease-out); }
+.amen__item:hover img { transform: scale(1.04); }
+.amen__cap { position: absolute; left: 10px; bottom: 10px; padding: 5px 11px; border-radius: 20px; background: rgba(11, 58, 46, .82); color: var(--on-dark); font: 600 12.5px/1.2 var(--sans); }
+@media (min-width: 1024px) {
+  .amen { display: grid; grid-template-columns: repeat(5, 1fr); overflow: visible; margin-inline: 0; padding-inline: 0; margin-top: 40px; }
+  .amen__item { width: auto; }
 }
