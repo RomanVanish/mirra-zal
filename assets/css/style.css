@@ -519,8 +519,10 @@ br.m-br { display: none; }
 
 /* ---------- свет под формат ---------- */
 .light__stage { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 3 / 2; background: var(--bg-2); }
-.light__pics img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.1s var(--ease); }
-.light__pics img.is-on { opacity: 1; }
+.light__pics img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.3s cubic-bezier(.4, 0, .2, 1); }
+.light__pics img.is-old { opacity: 1; z-index: 0; transition: none; }
+.light__pics img.is-under { opacity: 1; z-index: 1; transition: none; }
+.light__pics img.is-on { opacity: 1; z-index: 2; }
 /* кнопки поверх фото: залы — сверху слева, свет — снизу слева */
 .light__rooms, .light__modes {
   position: absolute; left: 12px; z-index: 2; display: flex; flex-wrap: wrap; gap: 2px; max-width: calc(100% - 24px);
@@ -1100,4 +1102,11 @@ body.sheet-open { overflow: hidden; }
   .room .light-switch .light__txt { display: none; }
   .room .light-switch .light__ic { display: block; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .4)); }
   .room .light-switch button[aria-pressed="true"] .light__ic { filter: none; }
+}
+
+/* компьютер: в «Свет под формат» свет — иконками (в карточках помещений — словами) */
+@media (min-width: 1024px) {
+  .light__modes button { width: 50px; height: 50px; min-height: 0; padding: 0; display: grid; place-items: center; }
+  .light__modes .light__txt { display: none; }
+  .light__modes .light__ic { display: block; width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 }

@@ -456,10 +456,19 @@
     var modesBar = $('[data-light-modes]', light);
     var note = $('[data-light-note]', light);
     var STEP = 4000, RESUME = 20000;
-    var cur = { imgs: [], figs: [], i: 0 }, timer = 0, visible = false;
+    var cur = { imgs: [], figs: [], i: -1 }, timer = 0, visible = false, underT = 0;
+    // смена света: новое фото проявляется поверх, предыдущее остаётся под ним непрозрачным,
+    // пока переход не закончится, — сквозь кадр ничего не просвечивает
     var pick = function (i) {
+      var prev = cur.imgs[cur.i], next = cur.imgs[i];
       cur.i = i;
-      cur.imgs.forEach(function (im, k) { im.classList.toggle('is-on', k === i); });
+      cur.imgs.forEach(function (im) { if (im !== prev && im !== next) im.classList.remove('is-on', 'is-under'); });
+      if (prev && prev !== next && prev.classList.contains('is-on')) {
+        prev.classList.remove('is-on'); prev.classList.add('is-under');
+        clearTimeout(underT);
+        underT = setTimeout(function () { prev.classList.remove('is-under'); }, 1500);
+      }
+      next.classList.remove('is-under'); next.classList.add('is-on');
       $$('button', modesBar).forEach(function (b, k) { b.setAttribute('aria-pressed', String(k === i)); });
       note.innerHTML = '';
       var rn = document.createElement('span'); rn.className = 'light__note-room';
@@ -478,19 +487,35 @@
     };
     var showRoom = function (set) {
       $$('button', roomsBar).forEach(function (b) { b.setAttribute('aria-selected', String(b._set === set)); });
-      pics.innerHTML = ''; modesBar.innerHTML = '';
-      cur.set = set;
+      // плавная смена помещения: старые фото остаются, пока новое не загрузится и не проявится поверх
+      // под новым помещением остаётся только кадр, который был виден; остальные убираем сразу
+      var shown = $('img.is-on', pics) || $('img.is-old', pics);
+      $$('img', pics).forEach(function (im) { if (im !== shown) im.remove(); });
+      var old = shown ? [shown] : [];
+      if (shown) { shown.classList.remove('is-on', 'is-under'); shown.classList.add('is-old'); }
+      clearTimeout(underT);
+      modesBar.innerHTML = '';
+      cur.set = set; cur.i = -1;
       cur.figs = $$('figure', set);
-      cur.imgs = cur.figs.map(function (f) { var im = $('img', f).cloneNode(); im.removeAttribute('loading'); pics.appendChild(im); return im; });
+      cur.imgs = cur.figs.map(function (f) { var im = $('img', f).cloneNode(); im.removeAttribute('loading'); im.classList.remove('is-on'); pics.appendChild(im); return im; });
       cur.figs.forEach(function (f, i) {
         var b = document.createElement('button');
         var mode = f.dataset.mode;
-        b.type = 'button'; b.setAttribute('aria-label', mode + ' свет');
+        b.type = 'button'; b.setAttribute('aria-label', mode + ' свет'); b.title = mode + ' свет';
         b.innerHTML = (ICON[mode] ? '<svg class="light__ic" viewBox="0 0 24 24" aria-hidden="true">' + ICON[mode] + '</svg>' : '') + '<span class="light__txt">' + mode + '</span>';
         b.addEventListener('click', function () { pick(i); schedule(RESUME); });
         modesBar.appendChild(b);
       });
-      pick(0);
+      var first = cur.imgs[0];
+      var reveal = function () {
+        requestAnimationFrame(function () {
+          pick(0);
+          setTimeout(function () { old.forEach(function (im) { im.remove(); }); }, 1500);
+        });
+      };
+      if (!old.length || reduce) { old.forEach(function (im) { im.remove(); }); pick(0); }
+      else if (first.decode) { first.decode().then(reveal, reveal); }
+      else { reveal(); }
       schedule(STEP);
     };
     if (sets.length > 1) {
