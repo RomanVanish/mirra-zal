@@ -5,6 +5,12 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // иконки света для телефона: яркий — солнце, средний — лампочка, мягкий — торшер
+  var ICON = {
+    'Яркий': '<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/>',
+    'Средний': '<path d="M9.2 17.5h5.6M10 20.5h4"/><path d="M12 3a6 6 0 0 0-3.4 10.9c.6.4.9 1 .9 1.7v.4h5v-.4c0-.7.3-1.3.9-1.7A6 6 0 0 0 12 3Z"/>',
+    'Мягкий': '<path d="M8 3h8l2.3 6.5H5.7Z"/><path d="M12 9.5v11M8.5 20.5h7"/>'
+  };
 
   /* ---------- заглушки видео: видны, только если у body есть класс show-placeholders ---------- */
   var showPh = document.body.classList.contains('show-placeholders');
@@ -323,8 +329,9 @@
       };
       imgs.forEach(function (im, i) {
         var b = document.createElement('button');
-        b.type = 'button';
-        b.textContent = im.dataset.mode || ('Вариант ' + (i + 1));
+        var mode = im.dataset.mode || ('Вариант ' + (i + 1));
+        b.type = 'button'; b.setAttribute('aria-label', mode + ' свет');
+        b.innerHTML = (ICON[mode] ? '<svg class="light__ic" viewBox="0 0 24 24" aria-hidden="true">' + ICON[mode] + '</svg>' : '') + '<span class="light__txt">' + mode + '</span>';
         b.addEventListener('click', function (e) { e.stopPropagation(); pick(i); cycle(20000); });
         bar.appendChild(b);
       });
@@ -454,7 +461,11 @@
       cur.i = i;
       cur.imgs.forEach(function (im, k) { im.classList.toggle('is-on', k === i); });
       $$('button', modesBar).forEach(function (b, k) { b.setAttribute('aria-pressed', String(k === i)); });
-      note.textContent = cur.figs[i].dataset.note || '';
+      note.innerHTML = '';
+      var rn = document.createElement('span'); rn.className = 'light__note-room';
+      rn.textContent = cur.set.dataset.room.replace(/[«»]/g, '') + ' · ';
+      note.appendChild(rn);
+      note.appendChild(document.createTextNode(cur.figs[i].dataset.note || ''));
     };
     var schedule = function (delay) {
       clearTimeout(timer);
@@ -473,7 +484,9 @@
       cur.imgs = cur.figs.map(function (f) { var im = $('img', f).cloneNode(); im.removeAttribute('loading'); pics.appendChild(im); return im; });
       cur.figs.forEach(function (f, i) {
         var b = document.createElement('button');
-        b.type = 'button'; b.textContent = f.dataset.mode;
+        var mode = f.dataset.mode;
+        b.type = 'button'; b.setAttribute('aria-label', mode + ' свет');
+        b.innerHTML = (ICON[mode] ? '<svg class="light__ic" viewBox="0 0 24 24" aria-hidden="true">' + ICON[mode] + '</svg>' : '') + '<span class="light__txt">' + mode + '</span>';
         b.addEventListener('click', function () { pick(i); schedule(RESUME); });
         modesBar.appendChild(b);
       });
@@ -481,9 +494,11 @@
       schedule(STEP);
     };
     if (sets.length > 1) {
-      sets.forEach(function (set) {
+      sets.forEach(function (set, n) {
         var b = document.createElement('button');
-        b.type = 'button'; b.setAttribute('role', 'tab'); b.textContent = set.dataset.room.replace(/[«»]/g, ''); b._set = set;
+        var name = set.dataset.room.replace(/[«»]/g, '');
+        b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-label', name); b._set = set;
+        b.innerHTML = '<span class="light__num">' + (n + 1) + '</span><span class="light__txt">' + name + '</span>';
         b.addEventListener('click', function () { showRoom(set); });
         roomsBar.appendChild(b);
       });
