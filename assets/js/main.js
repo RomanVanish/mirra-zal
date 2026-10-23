@@ -299,7 +299,9 @@
   /* ---------- галереи в карточках помещений ---------- */
   $$('[data-gallery]').forEach(function (g) {
     var track = $('.gallery__track', g);
-    // пара «мягкий / яркий свет»: фото лежат друг на друге, переключатель плавно меняет их
+    // пара/тройка «свет»: фото лежат друг на друге, переключатель плавно меняет их.
+    // Свет сам чередуется каждые 6 с (только внутри этого слайда, другие ракурсы не листаются);
+    // если свет выбрали вручную — пауза 20 с. Работает, пока галерея на экране.
     $$('.gallery__slide--light', track).forEach(function (fig) {
       var imgs = $$('img', fig);
       if (imgs.length < 2) return;
@@ -307,19 +309,31 @@
       bar.className = 'light-switch';
       bar.setAttribute('role', 'group');
       bar.setAttribute('aria-label', 'Освещение');
+      var cur = 0, timer = 0, onScreen = false;
+      var start = +fig.dataset.lightStart || 6000;   // первая смена; у соседних кабинетов — со сдвигом
       var pick = function (i) {
+        cur = i;
         imgs.forEach(function (im, k) { im.classList.toggle('is-on', k === i); });
         $$('button', bar).forEach(function (b, k) { b.setAttribute('aria-pressed', String(k === i)); });
+      };
+      var cycle = function (delay) {
+        clearTimeout(timer);
+        if (reduce || !onScreen || document.hidden) return;
+        timer = setTimeout(function () { pick((cur + 1) % imgs.length); cycle(6000); }, delay);
       };
       imgs.forEach(function (im, i) {
         var b = document.createElement('button');
         b.type = 'button';
         b.textContent = im.dataset.mode || ('Вариант ' + (i + 1));
-        b.addEventListener('click', function (e) { e.stopPropagation(); pick(i); });
+        b.addEventListener('click', function (e) { e.stopPropagation(); pick(i); cycle(20000); });
         bar.appendChild(b);
       });
       fig.appendChild(bar);
       pick(0);
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (en) { onScreen = en[0].isIntersecting; cycle(start); }, { threshold: 0.5 }).observe(fig);
+      } else { onScreen = true; cycle(start); }
+      document.addEventListener('visibilitychange', function () { cycle(start); });
     });
 
     var slides = $$('.gallery__slide', track);
@@ -342,14 +356,19 @@
       if (e.key === 'ArrowRight') { e.preventDefault(); go(idx() + 1); }
       if (e.key === 'ArrowLeft') { e.preventDefault(); go(idx() - 1); }
     });
-    // для просмотра на весь экран берём видимое сейчас фото (у пары «свет» — выбранный вариант)
-    var items = function () {
-      return slides.map(function (s) {
-        var im = $('img.is-on', s) || $('img', s);
-        return { src: fullSrc(im), alt: im.alt };
+    // на весь экран — все фото помещения, у слайда «свет» — каждый вариант света отдельным кадром;
+    // открывается на том варианте, который сейчас виден
+    var items = [], first = [];
+    slides.forEach(function (s) {
+      first.push(items.length);
+      $$('img', s).forEach(function (im) { items.push({ src: fullSrc(im), alt: im.alt }); });
+    });
+    slides.forEach(function (s, i) {
+      s.addEventListener('click', function () {
+        var on = $$('img', s).indexOf($('img.is-on', s));
+        lbOpen(items, first[i] + Math.max(on, 0), track);
       });
-    };
-    slides.forEach(function (s, i) { s.addEventListener('click', function () { lbOpen(items(), i, track); }); });
+    });
     update();
   });
 
