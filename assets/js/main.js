@@ -413,7 +413,11 @@
     }
     if (card.dataset.poster) card.style.backgroundImage = 'url("' + card.dataset.poster + '")';
     card.hidden = false;
-    var open = function (from) { lbOpen([{ video: src, poster: card.dataset.poster, alt: card.dataset.title }], 0, from); };
+    // на телефонах — облегчённая версия ролика (data-video-sm), если она есть
+    var open = function (from) {
+      var file = (card.dataset.videoSm && Math.max(window.innerWidth, window.innerHeight) < 1100) ? card.dataset.videoSm : src;
+      lbOpen([{ video: file, poster: card.dataset.poster, alt: card.dataset.title }], 0, from);
+    };
     card.addEventListener('click', function () { open(card); });
     if (card.dataset.videoId) {
       $$('[data-video-open="' + card.dataset.videoId + '"]').forEach(function (btn) {
