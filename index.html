@@ -23,7 +23,7 @@
 <link rel="preload" href="assets/fonts/cormorant-garamond-cyrillic-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/manrope-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/img/lotos-35/lotos-02-800.webp" imagesrcset="assets/img/lotos-35/lotos-02-800.webp 800w, assets/img/lotos-35/lotos-02-1600.webp 1600w" imagesizes="(min-width: 1024px) 55vw, 100vw" fetchpriority="high">
-<link rel="stylesheet" href="assets/css/style.css?v=98">
+<link rel="stylesheet" href="assets/css/style.css?v=109">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <!-- class="show-placeholders": показывать места под ещё не снятые видео. Убрать класс перед отправкой ссылки, если заглушки не нужны. -->
@@ -125,7 +125,11 @@
       width="1600" height="1200" fetchpriority="high"
       alt="Зал «Лотос»: стулья расставлены кругом, на стене большой телевизор">
     <figure class="hero__inset">
-      <img src="assets/img/zolotoy-10/zolotoy-01-800.webp" width="800" height="450" loading="lazy" alt="Кабинет «Золотой»: кожаный диван, кресла и торшер с тёплым светом">
+      <button class="hero__inset-btn" type="button" data-video-open="overview" hidden aria-label="Смотреть видео-обзор пространства, 2:15">
+        <img src="assets/img/zolotoy-10/zolotoy-01-800.webp" width="800" height="450" loading="lazy" alt="">
+        <span class="hero__inset-play" aria-hidden="true"><svg class="ic"><use href="#i-play"/></svg></span>
+        <span class="hero__inset-cap">Видео-обзор · 2:15</span>
+      </button>
     </figure>
   </div>
   <div class="hero__body">
@@ -140,7 +144,7 @@
       <a class="btn btn--primary" href="#contacts" data-contact>Забронировать дату<svg class="ic"><use href="#i-arrow"/></svg></a>
       <a class="btn btn--ghost" href="tel:+79219675459"><svg class="ic"><use href="#i-phone"/></svg>Позвонить <span class="btn__num">+7 921 967-54-59</span></a>
     </div>
-    <button class="hero__video" type="button" data-video-open="overview" hidden><span class="hero__play"><svg class="ic"><use href="#i-play"/></svg></span>Видео-обзор пространства</button>
+    <button class="hero__video" type="button" data-video-open="overview" hidden><span class="hero__play"><svg class="ic"><use href="#i-play"/></svg></span><span class="hero__video-txt">Видео-обзор пространства</span></button>
   </div>
 </section>
 
@@ -236,7 +240,7 @@
             </span>
           </div>
         </div>
-        <button class="video-thumb" type="button" data-video="" data-poster="" data-duration="" data-title="Видео: зал «Лотос»" hidden><span class="video-thumb__img"><svg class="ic"><use href="#i-play"/></svg></span><span class="video-thumb__txt"><b>Видео-обход зала</b><small data-duration-out>Видео</small></span><svg class="ic video-thumb__go"><use href="#i-arrow"/></svg></button>
+        <button class="video-thumb" type="button" data-video="assets/video/lotos.mp4" data-poster="assets/img/common/lotos-poster.webp" data-duration="0:17" data-title="Видео: зал «Лотос»" hidden><span class="video-thumb__img"><svg class="ic"><use href="#i-play"/></svg></span><span class="video-thumb__txt"><b>Видео-обход зала</b><small data-duration-out>Видео</small></span><svg class="ic video-thumb__go"><use href="#i-arrow"/></svg></button>
       </div>
       <div class="room__body">
         <p class="room__desc">Светлый зал с тёплым полом и большим телевизором.</p>
@@ -307,7 +311,7 @@
               </span>
             </div>
           </div>
-          <button class="video-thumb" type="button" data-video="" data-poster="" data-duration="" data-title="Видео: кабинет «Золотой»" hidden><span class="video-thumb__img"><svg class="ic"><use href="#i-play"/></svg></span><span class="video-thumb__txt"><b>Видео-обход кабинета</b><small data-duration-out>Видео</small></span><svg class="ic video-thumb__go"><use href="#i-arrow"/></svg></button>
+          <button class="video-thumb" type="button" data-video="assets/video/zolotoy.mp4" data-poster="assets/img/common/zolotoy-poster.webp" data-duration="0:20" data-title="Видео: кабинет «Золотой»" hidden><span class="video-thumb__img"><svg class="ic"><use href="#i-play"/></svg></span><span class="video-thumb__txt"><b>Видео-обход кабинета</b><small data-duration-out>Видео</small></span><svg class="ic video-thumb__go"><use href="#i-arrow"/></svg></button>
         </div>
         <div class="room__body">
           <p class="room__desc">Тёплый кабинет с кожаным диваном и креслами — для индивидуальных и парных консультаций. Свет настраивается: мягкий для психотерапии, яркий для деловых встреч.</p>
@@ -337,7 +341,7 @@
               </span>
             </div>
           </div>
-          <button class="video-thumb" type="button" data-video="" data-poster="" data-duration="" data-title="Видео: кабинет «Цапля»" hidden><span class="video-thumb__img"><svg class="ic"><use href="#i-play"/></svg></span><span class="video-thumb__txt"><b>Видео-обход кабинета</b><small data-duration-out>Видео</small></span><svg class="ic video-thumb__go"><use href="#i-arrow"/></svg></button>
+          <button class="video-thumb" type="button" data-video="assets/video/tsaplya.mp4" data-poster="assets/img/common/tsaplya-poster.webp" data-duration="0:14" data-title="Видео: кабинет «Цапля»" hidden><span class="video-thumb__img"><svg class="ic"><use href="#i-play"/></svg></span><span class="video-thumb__txt"><b>Видео-обход кабинета</b><small data-duration-out>Видео</small></span><svg class="ic video-thumb__go"><use href="#i-arrow"/></svg></button>
         </div>
         <div class="room__body">
           <p class="room__desc">Камерный кабинет с живописью и мягкими креслами — для индивидуальных и парных консультаций и супервизий. Свет — от приглушённого до яркого делового.</p>
