@@ -85,6 +85,58 @@
     });
   });
 
+  /* ---------- переходы по ссылкам внутри страницы: прокручиваем сами, чтобы табличка раздела
+     встала сразу под шапкой (без пустого отступа сверху). Из мобильного меню — сначала закрываем меню,
+     через два кадра прокручиваем: иначе телефон гасит прокрутку, пока страница ещё заблокирована меню. ---------- */
+  var docTop = function (el) { var y = 0; while (el) { y += el.offsetTop; el = el.offsetParent; } return y; };
+  var anchorY = function (target) {
+    if (target.id === 'top') return 0;
+    var mark = $('.plaque', target) || target;
+    return Math.max(0, docTop(mark) - header.offsetHeight - 12);
+  };
+  var goTo = function (target, smooth) {
+    var fix = function () {
+      window.removeEventListener('scrollend', fix);
+      var y = anchorY(target);
+      if (Math.abs(window.scrollY - y) > 3) window.scrollTo({ top: y, behavior: 'auto' });
+    };
+    window.scrollTo({ top: anchorY(target), behavior: smooth && !reduce ? 'smooth' : 'auto' });
+    // если за время прокрутки что-то выше догрузилось и сдвинуло раздел — доводим на место
+    if ('onscrollend' in window) window.addEventListener('scrollend', fix);
+    window.setTimeout(fix, 1600);
+  };
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = decodeURIComponent(a.getAttribute('href').slice(1));
+    var target = id && id !== 'main' && document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    if (menu.classList.contains('is-open')) setMenu(false);
+    if (history.pushState) history.pushState(null, '', '#' + id);
+    window.requestAnimationFrame(function () { window.requestAnimationFrame(function () { goTo(target, true); }); });
+  });
+  // открыли страницу сразу с якорем (…/#terms) — встаём так же, по табличке
+  if (location.hash.length > 1) {
+    var hashTarget = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (hashTarget) window.addEventListener('load', function () { goTo(hashTarget, false); });
+  }
+
+  /* ---------- «Первая встреча»: общий блик для двух надписей — сообщаем им ширину плашки и их место в ней ---------- */
+  var accent = $('.terms__accent');
+  if (accent) {
+    var shineParts = [$('.terms__accent-title', accent), $('.visit__txt', accent)].filter(Boolean);
+    var placeShine = function () {
+      var r = accent.getBoundingClientRect();
+      accent.style.setProperty('--pw', Math.round(r.width) + 'px');
+      shineParts.forEach(function (el) { el.style.setProperty('--sx', Math.round(el.getBoundingClientRect().left - r.left) + 'px'); });
+    };
+    placeShine();
+    window.addEventListener('resize', placeShine);
+    window.addEventListener('load', placeShine);
+  }
+
   /* ---------- появление блоков при прокрутке (один раз) ---------- */
   var reveals = $$('.reveal');
   if ('IntersectionObserver' in window && !reduce) {
